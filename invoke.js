@@ -49,11 +49,12 @@ async function main() {
 
         // Submit the specified transaction.
         // hello transaction - requires 3 argument (3rd argument is username), ex: ('hello', 'user1', 'lakhanboy')
-        // request transaction - requires 4 arguments , ex: ('request', 'user1', 'cardreq or gamereq', 'url/card info', 'alias')
-        // coinRequest transaction - requires 5 (last is reward) arguments, ex: ('coinReqest', 'gamemaker1' ,'username1', 'username2', '45')
+        // request transaction - requires 4 arguments , ex: ('request', 'user1', 'cardreq or gmakereq', 'url/card info', 'alias')
+        // coinRequest transaction - requires 4 arguments, ex: ('coinReqest', 'gamemaker1' ,'username1', 'username2')
+        // stakeCoinRequest transaction requires 4 args, last is itemIDS - ex: ('stakeCoinRequest', user2 ,'itemID', ["1",3])
         // tradingRequest transaction - requires 5 args, ex: ('tradingRequest', 'user1' ,'lakhanboy' ,'[5,7,8]', '[1,2,3,4]')
         // voteForRequest transaction - requires 3 args (last is request ID) , ex: ('voteForRequest', 'user1', '3')
-        // updateRequest transaction - requires 6 args ex: ('updateRequest', 'user1', 'itemID' ,'winner/0', 'accepted/unaccepted')
+        // updateRequest transaction - requires 5 args ex: ('updateRequest', 'user1', 'itemID' ,'winner/0', 'accepted/unaccepted')
         // buyAsset transaction - requires4 args ex: ('buyAsset', 'user1', 'itemID', '["1", "2", "3"]')
 
         if (choice === "hello") {
@@ -63,10 +64,10 @@ async function main() {
             await contract.submitTransaction("request", arg1, arg2, arg3);
             console.log(`${choice} Transaction has been submitted`);
         } else if (choice === "coinRequest") {
-            const result = await contract.submitTransaction("coinRequest", arg1, arg2, arg3);
+            const result = await contract.submitTransaction("coinRequest", arg1, arg2);
             console.log(`${choice} Transaction has been submitted`);
             console.log(
-                `TransactionTypeAll has been evaluated, result is: ${result.toString()}`
+                `Transaction has been evaluated, result is: ${result.toString()}`
             );
         } else if (choice === "tradeRequest") {
             await contract.submitTransaction("tradeRequest", arg1, arg2, arg3);
@@ -81,7 +82,13 @@ async function main() {
             const result = await contract.submitTransaction("buyAsset", arg1, arg2);
             console.log(`${choice} Transaction has been submitted`);
             console.log(
-                `TransactionTypeAll has been evaluated, result is: ${result.toString()}`
+                `Transaction has been evaluated, result is: ${result.toString()}`
+            );
+        } else if (choice == "stakeCoinRequest") {
+            const result = await contract.submitTransaction("stakeCoinRequest", arg1, arg2);
+            console.log(`${choice} Transaction has been submitted`);
+            console.log(
+                `Transaction has been evaluated, result is: ${result.toString()}`
             );
         } else {
             console.log(`${choice} is invalid!`);

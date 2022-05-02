@@ -10,12 +10,13 @@ const { Gateway, Wallets } = require('fabric-network');
 const path = require('path');
 const fs = require('fs');
 
-let user, msgID;
+let user, msgID, arg1;
 
 process.argv.forEach(function (val, index, array) {
     // console.log(index + ': ' + val);
     msgID = array[3];
     user = array[2];
+    arg1 = array[4]
 });
 
 
@@ -72,6 +73,11 @@ async function main() {
 
         } else if (msgID === "3") {
             const result = await contract.evaluateTransaction("queryTradeRequests");
+            console.log(
+                `TransactionTypeAll has been evaluated, result is: ${result.toString()}`
+            );
+        } else if (msgID === "4") {
+            const result = await contract.evaluateTransaction("queryItem", arg1);
             console.log(
                 `TransactionTypeAll has been evaluated, result is: ${result.toString()}`
             );

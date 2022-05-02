@@ -91,9 +91,9 @@ app.post('/trade/:username/:id/:decision', async (req, res) => {
 })
 
 //  * coin request
-app.post('/coin/:username/:user1/:user2/:rew', async (req, res) => {
+app.post('/coinreq/:username/:user0/:user1', async (req, res) => {
     try {
-        let valid = await invoke('coinrequest', req.params["username"], parseInt(req.params["user1"]), req.params["user2"], req.params["rew"])
+        let valid = await invoke('coinrequest', req.params["username"], parseInt(req.params["user0"]), req.params["user1"])
         if (!valid) {
             res.status(400).send(new Error("error:could not decide on trade"))
         } else {
@@ -105,8 +105,24 @@ app.post('/coin/:username/:user1/:user2/:rew', async (req, res) => {
     }
 })
 
+
+// * for staking items to a game hosted by gamemaker
+app.post('/coinstk/:username/:items', async (req, res) => {
+    try {
+        let valid = await invoke('coinstake', req.params["username"], parseInt(req.params["items"]))
+        if (!valid) {
+            res.status(400).send(new Error("error:could not decide on trade"))
+        } else {
+            res.status(200).send("success:assets staked")
+        }
+    } catch (e) {
+        console.log(e)
+        res.status(500).send("error:something happened")
+    }
+})
+
 // * for updating coin request
-app.post('/coin/:username/:id/:winner', async (req, res) => {
+app.post('/coinupd/:username/:id/:winner', async (req, res) => {
     try {
         let valid = await invoke('updaterequest', req.params["username"], parseInt(req.params["id"]), req.params["winner"], "yes")
         if (!valid) {
