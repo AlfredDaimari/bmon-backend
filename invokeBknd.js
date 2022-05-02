@@ -61,10 +61,19 @@ async function invoke(choice, user, arg1 = "", arg2 = "", arg3 = "", arg4 = "") 
                 return true
             // all gamer maker types
             case 'coinrequest':
-                result = await contract.submitTransaction("coinRequest", arg1, arg2, arg3, arg4);
+                result = await contract.submitTransaction("coinRequest", arg1, arg2);
                 console.log(`${choice} Transaction has been submitted`);
                 console.log(
-                    `TransactionTypeAll has been evaluated, result is: ${result.toString()}`
+                    `transaction has been evaluated, result is: ${result.toString()}`
+                );
+                return true
+                return true
+            // all gamer maker types
+            case 'coinstake':
+                result = await contract.submitTransaction("stakeCoinRequest", arg1, arg2);
+                console.log(`${choice} Transaction has been submitted`);
+                console.log(
+                    `transaction has been evaluated, result is: ${result.toString()}`
                 );
                 return true
             default:

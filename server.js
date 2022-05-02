@@ -62,6 +62,19 @@ app.post('/votereq/:username/:id', async (req, res) => {
     }
 })
 
+// * for querying single item
+
+app.post('/query/:username/4/:itemID', async (req, res) => {
+    try {
+        let resp = await query(req.params["username"], 4, req.params["itemID"])
+        console.log(resp)
+        res.status(200).send(resp)
+    } catch (e) {
+        console.log(e)
+        res.status(500).send("error:something happened")
+    }
+})
+
 
 // * for querying the backend
 app.post('/query/:username/:id', async (req, res) => {

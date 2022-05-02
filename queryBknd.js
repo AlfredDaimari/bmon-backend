@@ -4,7 +4,7 @@ const path = require('path');
 const fs = require('fs');
 
 
-async function query(user, id) {
+async function query(user, id, arg1 = "") {
     try {
         // load the network configuration
         const ccpPath = path.resolve(__dirname, '..', '..', 'test-network', 'organizations', 'peerOrganizations', 'org1.example.com', 'connection-org1.json');
@@ -67,6 +67,12 @@ async function query(user, id) {
                 );
                 return result
             case 4:
+                result = await contract.evaluateTransaction("queryItem", arg1);
+                console.log(
+                    `transaction has been evaluated, result is: ${result.toString()}`
+                );
+                return result
+            case 5:
                 result = await contract.evaluateTransaction("queryMyItems");
                 console.log(
                     `transaction has been evaluated, result is: ${result.toString()}`
