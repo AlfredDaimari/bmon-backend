@@ -66,13 +66,13 @@ async function query(user, id, arg1 = "") {
                     `transaction has been evaluated, result is: ${result.toString()}`
                 );
                 return result
-            case 4:
+            case 5:
                 result = await contract.evaluateTransaction("queryItem", arg1);
                 console.log(
                     `transaction has been evaluated, result is: ${result.toString()}`
                 );
                 return result
-            case 5:
+            case 4:
                 result = await contract.evaluateTransaction("queryMyItems");
                 console.log(
                     `transaction has been evaluated, result is: ${result.toString()}`
