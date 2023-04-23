@@ -20,7 +20,7 @@
         "fabric-ca-client": "^2.2.4",
         "fabric-network": "^2.2.4",
         "lodash": "^4.17.21",
-        "nodemon": "^2.0.15",
+        "nodemon": "^2.0.22",
         "socket.io": "^4.4.1"
     },
     "devDependencies": {
