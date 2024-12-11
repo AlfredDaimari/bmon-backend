@@ -16,7 +16,7 @@
     "license": "Apache-2.0",
     "dependencies": {
         "cors": "^2.8.5",
-        "express": "^4.17.3",
+        "express": "^4.21.2",
         "fabric-ca-client": "^2.2.4",
         "fabric-network": "^2.2.4",
         "lodash": "^4.17.21",
